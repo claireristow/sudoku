@@ -1,5 +1,5 @@
 $bright-primary: #FE3C71;
-$light-primary: rgb(255, 116, 153);
+$light-primary: rgb(255, 121, 156);
 $background: rgb(212, 212, 212);
 $dark-text: rgb(24, 24, 24);
 $body-font: 'Quicksand', sans-serif;
@@ -17,4 +17,8 @@ body {
 
 img {
     max-width: 100%;
+}
+
+p {
+    margin: 0;
 }

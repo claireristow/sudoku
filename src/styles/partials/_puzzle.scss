@@ -21,7 +21,15 @@
 }
 
 .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 0.15rem solid $dark-text;
-    padding: 2rem;
     width: 33.33%;
+    height: 33.33%;
+    font-size: 3rem;
+}
+
+.focus {
+    border: 0.15rem solid $bright-primary;
 }

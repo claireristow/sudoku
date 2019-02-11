@@ -142,6 +142,9 @@ body {
 img {
   max-width: 100%; }
 
+p {
+  margin: 0; }
+
 h1, h2, h3 {
   margin: 0;
   padding: 0;
@@ -165,6 +168,13 @@ h1, h2, h3 {
   height: calc(60rem/3); }
 
 .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.15rem solid #181818;
-  padding: 2rem;
-  width: 33.33%; }
+  width: 33.33%;
+  height: 33.33%;
+  font-size: 3rem; }
+
+.focus {
+  border: 0.15rem solid #FE3C71; }
