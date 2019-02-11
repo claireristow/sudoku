@@ -1,0 +1,27 @@
+
+.puzzleFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.puzzle, .quad {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.puzzle {
+    width: 60rem;
+    border: 0.2rem solid $dark-text;
+}
+
+.quad {
+    border: 0.2rem solid $dark-text;
+    width: 33.33%;
+    height: calc(60rem/3);
+}
+
+.box {
+    border: 0.15rem solid $dark-text;
+    padding: 2rem;
+    width: 33.33%;
+}
