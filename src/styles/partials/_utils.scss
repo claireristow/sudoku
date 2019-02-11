@@ -15,6 +15,13 @@ body {
     font-family: $body-font;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 img {
     max-width: 100%;
 }

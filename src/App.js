@@ -10,13 +10,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentBox: ""
+      currentElement: ""
     }
   }
 
-  currentBox = (boxClass) => {
+  currentElement = (elementClass) => {
     this.setState({
-      currentBox: boxClass
+      currentElement: elementClass
     })
   }
 
@@ -28,8 +28,8 @@ class App extends Component {
         </header>
         <main>
           <PuzzleDifficulty/>
-          <Puzzle currentBox={this.currentBox}/>
-          <NumberButtons currentBox={this.state.currentBox}/>
+          <Puzzle currentElement={this.currentElement}/>
+          <NumberButtons currentElement={this.state.currentElement}/>
         </main>
       </div>
     );

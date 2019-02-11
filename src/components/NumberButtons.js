@@ -1,21 +1,69 @@
 import React, { Component } from 'react';
 
 class NumberButtons extends Component {
-    handleClick = (buttonNum) => {
-        document.querySelector(`.${this.props.currentBox}`).innerHTML = buttonNum;
+    addNumber = (buttonNum) => {
+        if (this.props.currentElement) {
+            document.querySelector(`.${this.props.currentElement}`).innerHTML = buttonNum;
+        }
+        this.checkNum(buttonNum);
     }
+
+    clear = () => {
+        const currentElement = document.querySelector(`.${this.props.currentElement}`)
+        if (this.props.currentElement && !currentElement.classList.contains('original-num')) {
+            currentElement.innerHTML = "";
+        }
+    }
+
+    getLocation = (location) => {
+        const classes = document.querySelector(`.${this.props.currentElement}`).classList;
+        let rowNum = "";
+        for (let i = 0; i < classes.length; i++) {
+            if (classes[i].slice(0, 4) == `${location}-`) {
+                rowNum = classes[i];
+            }
+        }
+        return rowNum;
+    }
+
+    checkNum = (num) => {
+        const colNum = this.getLocation("col");
+        const rowNum = this.getLocation("row");
+
+        const colElements = document.getElementsByClassName(colNum);
+        const rowElements = document.getElementsByClassName(rowNum);
+        
+        for (let i = 0; i < colElements.length; i++) {
+            if (colElements[i].innerHTML == num || rowElements[i].innerHTML == num) {
+                document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
+            } 
+        }
+    }
+    
+    componentDidMount() {
+        document.addEventListener("keyup", (e) => {
+            if (e.keyCode >= 49 && e.keyCode <= 57) {
+                this.addNumber(e.key);
+            } else if (e.keyCode >= 97 && e.keyCode <= 105) {
+                let num = e.key
+                this.addNumber(num[num.length -1]);
+            }
+        })
+    }
+
     render() {
         return (
             <section className="number-buttons">
-                <button onClick={() => this.handleClick("1")}>1</button>
-                <button onClick={() => this.handleClick("2")}>2</button>
-                <button onClick={() => this.handleClick("3")}>3</button>
-                <button onClick={() => this.handleClick("4")}>4</button>
-                <button onClick={() => this.handleClick("5")}>5</button>
-                <button onClick={() => this.handleClick("6")}>6</button>
-                <button onClick={() => this.handleClick("7")}>7</button>
-                <button onClick={() => this.handleClick("8")}>8</button>
-                <button onClick={() => this.handleClick("9")}>9</button>
+                <button onClick={() => this.clear()}>Clear</button>
+                <button onClick={() => this.addNumber("1")}>1</button>
+                <button onClick={() => this.addNumber("2")}>2</button>
+                <button onClick={() => this.addNumber("3")}>3</button>
+                <button onClick={() => this.addNumber("4")}>4</button>
+                <button onClick={() => this.addNumber("5")}>5</button>
+                <button onClick={() => this.addNumber("6")}>6</button>
+                <button onClick={() => this.addNumber("7")}>7</button>
+                <button onClick={() => this.addNumber("8")}>8</button>
+                <button onClick={() => this.addNumber("9")}>9</button>
             </section>
         );
     }

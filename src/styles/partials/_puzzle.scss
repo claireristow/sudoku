@@ -4,7 +4,7 @@
     justify-content: center;
 }
 
-.puzzle, .quad {
+.puzzle, .cell {
     display: flex;
     flex-wrap: wrap;
 }
@@ -14,13 +14,13 @@
     border: 0.2rem solid $dark-text;
 }
 
-.quad {
+.cell {
     border: 0.2rem solid $dark-text;
     width: 33.33%;
     height: calc(60rem/3);
 }
 
-.box {
+.element {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +30,14 @@
     font-size: 3rem;
 }
 
+.original-num {
+    font-weight: 700;
+}
+
 .focus {
-    border: 0.15rem solid $bright-primary;
+    border: 0.3rem solid $bright-primary;
+}
+
+.incorrect {
+    color: red;
 }

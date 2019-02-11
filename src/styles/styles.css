@@ -139,6 +139,12 @@ body {
   color: #181818;
   font-family: "Quicksand", sans-serif; }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 img {
   max-width: 100%; }
 
@@ -154,7 +160,7 @@ h1, h2, h3 {
   display: flex;
   justify-content: center; }
 
-.puzzle, .quad {
+.puzzle, .cell {
   display: flex;
   flex-wrap: wrap; }
 
@@ -162,12 +168,12 @@ h1, h2, h3 {
   width: 60rem;
   border: 0.2rem solid #181818; }
 
-.quad {
+.cell {
   border: 0.2rem solid #181818;
   width: 33.33%;
   height: calc(60rem/3); }
 
-.box {
+.element {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,5 +182,19 @@ h1, h2, h3 {
   height: 33.33%;
   font-size: 3rem; }
 
+.original-num {
+  font-weight: 700; }
+
 .focus {
-  border: 0.15rem solid #FE3C71; }
+  border: 0.3rem solid #FE3C71; }
+
+.incorrect {
+  color: red; }
+
+button {
+  margin: 1rem 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ff799c;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 2rem; }
