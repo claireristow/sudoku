@@ -4,6 +4,7 @@ class NumberButtons extends Component {
 
     // when a number is clicked, add to the puzzle
     addNumber = (buttonNum) => {
+        this.checkIncorrectClass();
         if (this.props.currentElement) {
             document.querySelector(`.${this.props.currentElement}`).innerHTML = buttonNum;
             this.checkNum(buttonNum);
@@ -11,6 +12,15 @@ class NumberButtons extends Component {
         }
     }
 
+    // checks for .incorrect and removes if present
+    checkIncorrectClass = () => {
+        const currentElementClasses = document.querySelector(`.${this.props.currentElement}`).classList
+        if (currentElementClasses.contains('incorrect')) {
+            currentElementClasses.remove('incorrect');
+        }
+    }
+
+    // when a number is added or removed, update the elementsFilled state
     updateElementsFilled = (num) => {
         const newCount = this.props.elementsFilled + num;
         this.props.updateElementsFilled(newCount);
@@ -23,8 +33,9 @@ class NumberButtons extends Component {
         }
     }
 
+    // when puzzle is correct and complete, show overlay
     puzzleCompleted = () => {
-        console.log('puzzle completed!')
+        document.querySelector('.game-over').classList.add('show-overlay');
     }
 
     // when "clear" button is clicked, clear the element
@@ -117,7 +128,7 @@ class NumberButtons extends Component {
 
     render() {
         return (
-            <section className="number-buttons">
+            <div className="number-buttons">
                 <button onClick={() => this.clear()}>Clear</button>
                 <button onClick={() => this.addNumber("1")}>1</button>
                 <button onClick={() => this.addNumber("2")}>2</button>
@@ -128,7 +139,7 @@ class NumberButtons extends Component {
                 <button onClick={() => this.addNumber("7")}>7</button>
                 <button onClick={() => this.addNumber("8")}>8</button>
                 <button onClick={() => this.addNumber("9")}>9</button>
-            </section>
+            </div>
         );
     }
 };

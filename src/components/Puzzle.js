@@ -32,7 +32,7 @@ class Puzzle extends Component {
 
     render() {
         return (
-            <section className="puzzle-flex">
+            <div className="puzzle-flex">
                 <div className="puzzle">
                     <div className="cell cell-1">
                         <div className="element element-1 row-1 col-1" onClick={() => this.handleClick("element-1")}></div>
@@ -134,7 +134,7 @@ class Puzzle extends Component {
                         <div className="element element-81 row-9 col-9" onClick={() => this.handleClick("element-81")}></div>
                     </div>
                 </div>
-            </section>
+            </div>
         );
     }
 };

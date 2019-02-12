@@ -5,6 +5,10 @@ $dark-text: rgb(24, 24, 24);
 $body-font: 'Quicksand', sans-serif;
 $heading-font: 'Lustria', serif;
 
+* {
+    transition: all 0.3s;
+}
+
 html {
     font-size: 62.5%;
 }
@@ -15,11 +19,30 @@ body {
     font-family: $body-font;
 }
 
-main {
+.wrapper {
+    width: 108rem;
+}
+
+.App {
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    margin: 1rem 0;
+}
+
+main {
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+footer {
+    margin: 1rem 0;
 }
 
 img {

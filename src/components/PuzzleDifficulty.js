@@ -13,13 +13,20 @@ class PuzzleDifficulty extends Component {
 
     // when a difficulty is selected, arrange the puzzle data into the sudoku board
     newPuzzle = (difficulty) => {
+
+        // remove and add current classes for styling 
+        document.querySelector('.border-button.current').classList.remove('current');
+        document.getElementById(difficulty).classList.add('current');
+
+        // use sudoku librayr to generate and format a new puzzle
         const puzzle = sudoku.generate(difficulty).split("");
         let elementNum = 1;
         puzzle.map((num) => {
             if (num === ".") {
                 num = " ";
+                document.querySelector(`.element-${elementNum}`).classList.remove('original-num');
             } else {
-                document.querySelector(`.element-${elementNum}`).classList.add('original-num')
+                document.querySelector(`.element-${elementNum}`).classList.add('original-num');
             }
             document.querySelector(`.element-${elementNum}`).innerHTML = `${num}`;
             elementNum += 1;
@@ -51,11 +58,11 @@ class PuzzleDifficulty extends Component {
 
     render() {
         return (
-            <section className="puzzle-buttons">
-                <button onClick={() => this.newPuzzle("medium")}>Easy</button>
-                <button onClick={() => this.newPuzzle("hard")}>Medium</button>
-                <button onClick={() => this.newPuzzle("very-hard")}>Hard</button>
-            </section>
+            <div className="puzzle-buttons">
+                <button className="border-button current" id="medium" onClick={() => this.newPuzzle("medium")}>Easy</button>
+                <button className="border-button" id="hard" onClick={() => this.newPuzzle("hard")}>Medium</button>
+                <button className="border-button" id="very-hard" onClick={() => this.newPuzzle("very-hard")}>Hard</button>
+            </div>
         );
     }
 };
