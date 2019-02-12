@@ -189,7 +189,7 @@ h1, h2, h3 {
   border: 0.3rem solid #FE3C71; }
 
 .incorrect {
-  color: red; }
+  color: #FE3C71; }
 
 button {
   margin: 1rem 0.5rem;

@@ -2,20 +2,30 @@ import React, { Component } from 'react';
 
 class NumberButtons extends Component {
 
-    // keeps track of puzzle completion
-    constructor() {
-        super();
-        this.state ={
-            elementsFilled: ""
-        }
-    }
-
     // when a number is clicked, add to the puzzle
     addNumber = (buttonNum) => {
         if (this.props.currentElement) {
             document.querySelector(`.${this.props.currentElement}`).innerHTML = buttonNum;
+            this.updateElementsFilled(1);
+            this.checkNum(buttonNum);
         }
-        this.checkNum(buttonNum);
+    }
+
+    updateElementsFilled = (num) => {
+        const newCount = this.props.elementsFilled + num;
+        this.props.updateElementsFilled(newCount);
+        if (newCount === 81) {
+            if (document.getElementsByClassName('incorrect')) {
+                console.log(document.getElementsByClassName)
+                alert('you have some incorrect inputs')
+            } else {
+                this.puzzleCompleted();
+            }
+        }
+    }
+
+    puzzleCompleted = () => {
+        console.log('puzzle completed!')
     }
 
     // when "clear" button is clicked, clear the element
@@ -23,6 +33,10 @@ class NumberButtons extends Component {
         const currentElement = document.querySelector(`.${this.props.currentElement}`)
         if (this.props.currentElement && !currentElement.classList.contains('original-num')) {
             currentElement.innerHTML = "";
+            if (currentElement.classList.contains('incorrect')) {
+                currentElement.classList.remove('incorrect');
+            }
+            this.updateElementsFilled(-1);
         }
     }
 
@@ -31,7 +45,7 @@ class NumberButtons extends Component {
         const classes = document.querySelector(`.${this.props.currentElement}`).classList;
         let rowNum = "";
         for (let i = 0; i < classes.length; i++) {
-            if (classes[i].slice(0, 4) == `${location}-`) {
+            if (classes[i].slice(0, 4) === `${location}-`) {
                 rowNum = classes[i];
             }
         }
@@ -43,7 +57,7 @@ class NumberButtons extends Component {
         const parentClasses = document.querySelector(`.${this.props.currentElement}`).parentElement.classList;
         let cellNum = "";
         for (let i = 0; i < parentClasses.length; i++) {
-            if (parentClasses[i].slice(0, 5) == `cell-`) {
+            if (parentClasses[i].slice(0, 5) === `cell-`) {
                 cellNum = parentClasses[i];
             }
         }
@@ -65,29 +79,24 @@ class NumberButtons extends Component {
         
         // check fit in column
         for (let i = 0; i < colElements.length; i++) {
-            if (colElements[i].innerHTML == num && !colElements[i].classList.contains(this.props.currentElement)) {
-                console.log('inner html matches column num')
+            if (colElements[i].innerHTML === num && !colElements[i].classList.contains(this.props.currentElement)) {
                 document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
             } 
         }
 
         // check fit in row
         for (let i = 0; i < rowElements.length; i++) {
-            console.log(rowElements[i])
-            if (rowElements[i].innerHTML == num && !rowElements[i].classList.contains(this.props.currentElement)) {
-                console.log('inner html matches row num')
+            if (rowElements[i].innerHTML === num && !rowElements[i].classList.contains(this.props.currentElement)) {
                 document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
             }
         }
 
         // check fit in cell
         for (let i = 0; i < cellElements.length; i++) {
-            if (cellElements[i].innerHTML == num && !cellElements[i].classList.contains(this.props.currentElement)) {
-                console.log('inner html matches cell num')
+            if (cellElements[i].innerHTML === num && !cellElements[i].classList.contains(this.props.currentElement)) {
                 document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
             }
         }
-
     }
     
     // event listener for user's keystrokes (instead of using number buttons)
@@ -100,9 +109,9 @@ class NumberButtons extends Component {
                 // numbers on keyboard numpad
                 let num = e.key
                 this.addNumber(num[num.length -1]);
-            } else if (e.keyCode == 8 || e.keyCode == 46) {
+            } else if (e.keyCode === 8 || e.keyCode === 46) {
                 // backspace and delete
-                document.querySelector(`.${this.props.currentElement}`).innerHTML = "";
+                this.clear();
             }
         })
     }

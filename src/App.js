@@ -12,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentElement: ""
+      currentElement: "",
+      elementsFilled: 0
     }
   }
 
@@ -23,16 +24,23 @@ class App extends Component {
     })
   }
 
+  // when a new element is filled, add to state counter
+  updateElementsFilled = (num) => {
+    this.setState({
+      elementsFilled: num
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Puzzle Me Sudoku</h1>
+          <h1>Sudoku</h1>
         </header>
         <main>
-          <PuzzleDifficulty/>
-          <Puzzle currentElement={this.currentElement}/>
-          <NumberButtons currentElement={this.state.currentElement}/>
+          <PuzzleDifficulty updateElementsFilled={this.updateElementsFilled} />
+          <Puzzle currentElement={this.currentElement} />
+          <NumberButtons currentElement={this.state.currentElement} updateElementsFilled={this.updateElementsFilled} elementsFilled={this.state.elementsFilled} />
         </main>
       </div>
     );
