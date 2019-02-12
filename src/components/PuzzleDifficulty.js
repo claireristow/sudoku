@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import sudoku from 'sudoku-umd';
 
 class PuzzleDifficulty extends Component {
+
+    // when a difficulty is selected, arrange the puzzle data into the sudoku board
     newPuzzle = (difficulty) => {
         const puzzle = sudoku.generate(difficulty).split("");
 
@@ -16,9 +18,13 @@ class PuzzleDifficulty extends Component {
             elementNum += 1;
         })
     }
+
+    // when the app loads, load a random easy puzzle
     componentDidMount() {
         this.newPuzzle("medium");
     }
+
+
     render() {
         return (
             <section className="puzzle-buttons">

@@ -7,6 +7,8 @@ import PuzzleDifficulty from './components/PuzzleDifficulty';
 import NumberButtons from './components/NumberButtons';
 
 class App extends Component {
+
+  // keep track of the current element the user is focusing on
   constructor() {
     super();
     this.state = {
@@ -14,6 +16,7 @@ class App extends Component {
     }
   }
 
+  // send current element to state
   currentElement = (elementClass) => {
     this.setState({
       currentElement: elementClass

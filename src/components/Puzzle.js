@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
 class Puzzle extends Component {
+
+    // keep track of the current element the user is focusing on
     constructor() {
         super();
         this.state = {
             currentElement: ""
         }
     }
+
+    // when a user clicks on an element, focus and pass state to app.js
     handleClick = (clickedelement) => {
         this.setState({
             currentElement: clickedelement
@@ -22,6 +26,7 @@ class Puzzle extends Component {
         }
         currentSelected.classList.add('focus');
     }
+
     render() {
         return (
             <section className="puzzle-flex">
