@@ -5,8 +5,9 @@ class NumberButtons extends Component {
     // when a number is clicked, add to the puzzle
     addNumber = (buttonNum) => {
         this.checkIncorrectClass();
-        if (this.props.currentElement) {
-            document.querySelector(`.${this.props.currentElement}`).innerHTML = buttonNum;
+        const currentElementHTML = document.querySelector(`.${this.props.currentElement}`);
+        if (this.props.currentElement && !currentElementHTML.classList.contains('original-num')) {
+            currentElementHTML.innerHTML = buttonNum;
             this.checkNum(buttonNum);
             this.updateElementsFilled(1);
         }
@@ -26,7 +27,7 @@ class NumberButtons extends Component {
         this.props.updateElementsFilled(newCount);
         if (newCount === 81) {
             if (document.getElementsByClassName('incorrect').length > 0) {
-                console.log('you have some incorrect inputs')
+                console.log('you have some incorrect inputs');
             } else {
                 this.puzzleCompleted();
             }
@@ -108,6 +109,44 @@ class NumberButtons extends Component {
             }
         }
     }
+
+    arrowEvents = (keyCode) => {
+        const currentElementClasses = document.querySelector(`.${this.props.currentElement}`).classList;
+        if (keyCode === 38) {
+            // arrow up
+            if (!currentElementClasses.contains('row-1')) {
+                const newElement = parseInt(this.props.currentElement.slice(8)) - 9;
+                this.props.updateCurrentElement(`element-${newElement}`);
+                this.focusElement();
+            }
+        } else if (keyCode === 37) {
+            // arrow left
+            if (!currentElementClasses.contains('col-1')) {
+                const newElement = parseInt(this.props.currentElement.slice(8)) - 1;
+                this.props.updateCurrentElement(`element-${newElement}`);
+                this.focusElement();
+            }
+        } else if (keyCode === 39) {
+            // arrow right
+            if (!currentElementClasses.contains('col-9')) {
+                const newElement = parseInt(this.props.currentElement.slice(8)) + 1;
+                this.props.updateCurrentElement(`element-${newElement}`);
+                this.focusElement();
+            }
+        } else {
+            // arrow down
+            if (!currentElementClasses.contains('row-9')) {
+                const newElement = parseInt(this.props.currentElement.slice(8)) + 9;
+                this.props.updateCurrentElement(`element-${newElement}`);
+                this.focusElement();
+            }
+        }
+    }
+
+    focusElement = () => {
+        document.querySelector('.focus').classList.remove('focus');
+        document.querySelector(`.${this.props.currentElement}`).classList.add('focus');
+    }
     
     // event listener for user's keystrokes (instead of using number buttons)
     componentDidMount() {
@@ -122,14 +161,20 @@ class NumberButtons extends Component {
             } else if (e.keyCode === 8 || e.keyCode === 46) {
                 // backspace and delete
                 this.clear();
+            } else if (e.keyCode === 38 || e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 40) {
+                // arrow up
+                // left
+                // right
+                // bottom
+                this.arrowEvents(e.keyCode);
             }
+            
         })
     }
 
     render() {
         return (
             <div className="number-buttons">
-                <button onClick={() => this.clear()}>Clear</button>
                 <button onClick={() => this.addNumber("1")}>1</button>
                 <button onClick={() => this.addNumber("2")}>2</button>
                 <button onClick={() => this.addNumber("3")}>3</button>
@@ -139,6 +184,7 @@ class NumberButtons extends Component {
                 <button onClick={() => this.addNumber("7")}>7</button>
                 <button onClick={() => this.addNumber("8")}>8</button>
                 <button onClick={() => this.addNumber("9")}>9</button>
+                <button onClick={() => this.clear()}>Clear</button>
             </div>
         );
     }

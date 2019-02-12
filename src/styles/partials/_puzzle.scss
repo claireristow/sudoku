@@ -1,6 +1,6 @@
 
 .puzzleElements {
-    width: 70%;
+    // width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,14 +18,14 @@
 }
 
 .puzzle {
-    width: 60rem;
+    width: 50rem;
     border: 0.4rem solid $dark-text;
 }
 
 .cell {
     border: 0.2rem solid $dark-text;
     width: 33.33%;
-    height: calc(60rem/3);
+    height: calc(50rem/3);
 }
 
 .element {
@@ -35,7 +35,7 @@
     border: 0.15rem solid $dark-text;
     width: 33.33%;
     height: 33.33%;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .original-num {
@@ -48,4 +48,48 @@
 
 .incorrect {
     color: $bright-primary;
+}
+
+@media(max-width: 575px) {
+
+    .puzzle {
+        width: 40rem;
+        border: 0.2rem solid $dark-text;
+    }
+
+    .cell {
+        height: calc(40rem/3);
+        border: 0.15rem solid $dark-text;
+    }
+    
+    .element {
+        font-size: 2rem;
+        border: 0.05rem solid $dark-text;
+    }
+
+}
+
+@media(max-width: 435px) {
+
+    .puzzle {
+        width: 35rem;
+    }
+
+    .cell {
+        height: calc(35rem/3);
+        border: 0.1rem solid $dark-text;
+    }
+
+}
+
+@media(max-width: 380px) {
+
+    .puzzle {
+        width: 30rem;
+    }
+
+    .cell {
+        height: calc(30rem/3);
+    }
+
 }

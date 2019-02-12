@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class GameOver extends Component {
 
     handleClick = () => {
-        document.querySelector(`.game-over`). classList.remove('show-overlay');
+        document.querySelector(`.game-over`).classList.remove('show-overlay');
     }
 
     render() {

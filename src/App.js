@@ -14,7 +14,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentElement: "",
+      currentElement: "element-1",
       elementsFilled: 0
     }
   }
@@ -35,22 +35,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Sudoku</h1>
-        </header>
-        <main className="wrapper">
-          <aside>
-            <Rules />
-          </aside>
-          <section className="puzzleElements">
-            <PuzzleDifficulty updateElementsFilled={this.updateElementsFilled} />
-            <Puzzle currentElement={this.currentElement} />
-            <NumberButtons currentElement={this.state.currentElement} updateElementsFilled={this.updateElementsFilled} elementsFilled={this.state.elementsFilled} />
-          </section>
-          <section className="game-over">
-            <GameOver />
-          </section>
+      <div className="app">
+        <main>
+          <div className="wrapper">
+            <aside>
+              <h1>Sudoku</h1>
+              <Rules />
+            </aside>
+            <section className="puzzleElements">
+              <PuzzleDifficulty updateElementsFilled={this.updateElementsFilled} />
+              <Puzzle currentElement={this.currentElement} />
+              <NumberButtons currentElement={this.state.currentElement} updateCurrentElement={this.currentElement} updateElementsFilled={this.updateElementsFilled} elementsFilled={this.state.elementsFilled} />
+            </section>
+            <section className="game-over">
+              <GameOver />
+            </section>
+          </div>
         </main>
         <footer>
           <p>&copy;2019 Claire Ristow</p>

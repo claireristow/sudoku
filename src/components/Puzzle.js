@@ -12,30 +12,28 @@ class Puzzle extends Component {
 
     // when a user clicks on an element, focus and pass state to app.js
     handleClick = (clickedElement) => {
-        // only focus if it's not an element from the original puzzle
-        if (!document.querySelector(`.${clickedElement}`).classList.contains('original-num')) {
-            this.setState({
-                currentElement: clickedElement
-            }, () => {
-                this.props.currentElement(this.state.currentElement);
-            });
-    
-            // add class for focus styles
-            const pastSelected = document.querySelector('.focus')
-            const currentSelected = document.querySelector(`.${clickedElement}`)
-            if (pastSelected) {
-                pastSelected.classList.remove('focus');
-            }
-            currentSelected.classList.add('focus');
+        this.setState({
+            currentElement: clickedElement
+        }, () => {
+            this.props.currentElement(this.state.currentElement);
+        });
+
+        // add class for focus styles
+        const pastSelected = document.querySelector('.focus')
+        const currentSelected = document.querySelector(`.${clickedElement}`)
+        if (pastSelected) {
+            pastSelected.classList.remove('focus');
         }
+        currentSelected.classList.add('focus');
     }
+    
 
     render() {
         return (
             <div className="puzzle-flex">
                 <div className="puzzle">
                     <div className="cell cell-1">
-                        <div className="element element-1 row-1 col-1" onClick={() => this.handleClick("element-1")}></div>
+                        <div className="element element-1 row-1 col-1 focus" onClick={() => this.handleClick("element-1")}></div>
                         <div className="element element-2 row-1 col-2" onClick={() => this.handleClick("element-2")}></div>
                         <div className="element element-3 row-1 col-3" onClick={() => this.handleClick("element-3")}></div>
                         <div className="element element-10 row-2 col-1" onClick={() => this.handleClick("element-10")}></div>

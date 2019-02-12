@@ -1,4 +1,15 @@
 
+.difficulty-buttons, .number-buttons {
+    margin: 0.5rem 0;
+}
+
+.number-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
     margin: 1rem 0.5rem;
     padding: 0.5rem 1rem;
@@ -19,4 +30,34 @@ button {
 .play-again {
     padding: 1rem 2rem;
     font-size: 3rem;
+}
+
+@media(max-width: 575px) {
+
+    button {
+        margin: 0.2rem;
+    }
+
+}
+
+@media(max-width: 435px) {
+
+    button {
+        border: 0.2rem solid $light-primary;
+        padding: 0.4rem 1rem;
+        font-size: 1.8rem;
+    }
+
+}
+
+@media(max-width: 380px) {
+
+    .number-buttons {
+        width: 100%;
+        button {
+            padding: 0.2rem 0.5rem;
+            min-width: calc(100% / 9 - 0.4rem)
+        }
+    }
+
 }

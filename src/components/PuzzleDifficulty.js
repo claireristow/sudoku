@@ -21,7 +21,7 @@ class PuzzleDifficulty extends Component {
         // use sudoku librayr to generate and format a new puzzle
         const puzzle = sudoku.generate(difficulty).split("");
         let elementNum = 1;
-        puzzle.map((num) => {
+        puzzle.forEach((num) => {
             if (num === ".") {
                 num = " ";
                 document.querySelector(`.element-${elementNum}`).classList.remove('original-num');
@@ -58,7 +58,7 @@ class PuzzleDifficulty extends Component {
 
     render() {
         return (
-            <div className="puzzle-buttons">
+            <div className="difficulty-buttons">
                 <button className="border-button current" id="medium" onClick={() => this.newPuzzle("medium")}>Easy</button>
                 <button className="border-button" id="hard" onClick={() => this.newPuzzle("hard")}>Medium</button>
                 <button className="border-button" id="very-hard" onClick={() => this.newPuzzle("very-hard")}>Hard</button>
