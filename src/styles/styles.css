@@ -186,15 +186,15 @@ h1, h2, h3 {
   font-weight: 700; }
 
 .focus {
-  border: 0.3rem solid #FE3C71; }
+  border: 0.3rem solid #a8c4ff; }
 
 .incorrect {
-  color: #FE3C71; }
+  color: #ff3974; }
 
 button {
   margin: 1rem 0.5rem;
   padding: 0.5rem 1rem;
-  background: #ff799c;
+  background: #a8c4ff;
   border: none;
   border-radius: 0.5rem;
   font-size: 2rem; }

@@ -6,8 +6,8 @@ class NumberButtons extends Component {
     addNumber = (buttonNum) => {
         if (this.props.currentElement) {
             document.querySelector(`.${this.props.currentElement}`).innerHTML = buttonNum;
-            this.updateElementsFilled(1);
             this.checkNum(buttonNum);
+            this.updateElementsFilled(1);
         }
     }
 
@@ -15,9 +15,8 @@ class NumberButtons extends Component {
         const newCount = this.props.elementsFilled + num;
         this.props.updateElementsFilled(newCount);
         if (newCount === 81) {
-            if (document.getElementsByClassName('incorrect')) {
-                console.log(document.getElementsByClassName)
-                alert('you have some incorrect inputs')
+            if (document.getElementsByClassName('incorrect').length > 0) {
+                console.log('you have some incorrect inputs')
             } else {
                 this.puzzleCompleted();
             }

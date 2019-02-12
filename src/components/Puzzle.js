@@ -11,20 +11,23 @@ class Puzzle extends Component {
     }
 
     // when a user clicks on an element, focus and pass state to app.js
-    handleClick = (clickedelement) => {
-        this.setState({
-            currentElement: clickedelement
-        }, () => {
-            this.props.currentElement(this.state.currentElement);
-        });
-
-        // add class for focus styles
-        const pastSelected = document.querySelector('.focus')
-        const currentSelected = document.querySelector(`.${clickedelement}`)
-        if (pastSelected) {
-            pastSelected.classList.remove('focus');
+    handleClick = (clickedElement) => {
+        // only focus if it's not an element from the original puzzle
+        if (!document.querySelector(`.${clickedElement}`).classList.contains('original-num')) {
+            this.setState({
+                currentElement: clickedElement
+            }, () => {
+                this.props.currentElement(this.state.currentElement);
+            });
+    
+            // add class for focus styles
+            const pastSelected = document.querySelector('.focus')
+            const currentSelected = document.querySelector(`.${clickedElement}`)
+            if (pastSelected) {
+                pastSelected.classList.remove('focus');
+            }
+            currentSelected.classList.add('focus');
         }
-        currentSelected.classList.add('focus');
     }
 
     render() {
