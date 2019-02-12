@@ -26,18 +26,51 @@ class NumberButtons extends Component {
         return rowNum;
     }
 
+    getCellNum = () => {
+        const parentClasses = document.querySelector(`.${this.props.currentElement}`).parentElement.classList;
+        let cellNum = "";
+        for (let i = 0; i < parentClasses.length; i++) {
+            if (parentClasses[i].slice(0, 5) == `cell-`) {
+                cellNum = parentClasses[i];
+            }
+        }
+        return cellNum;
+
+    }
+
     checkNum = (num) => {
         const colNum = this.getLocation("col");
         const rowNum = this.getLocation("row");
+        const cellNum = this.getCellNum();
+        console.log(cellNum)
 
         const colElements = document.getElementsByClassName(colNum);
         const rowElements = document.getElementsByClassName(rowNum);
+        const cellElements = document.querySelector(`.${cellNum}`).children;
+        console.log(cellElements)
         
         for (let i = 0; i < colElements.length; i++) {
-            if (colElements[i].innerHTML == num || rowElements[i].innerHTML == num) {
+            if (colElements[i].innerHTML == num && !colElements[i].classList.contains(this.props.currentElement)) {
+                console.log('inner html matches column num')
                 document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
             } 
         }
+
+        for (let i = 0; i < rowElements.length; i++) {
+            console.log(rowElements[i])
+            if (rowElements[i].innerHTML == num && !rowElements[i].classList.contains(this.props.currentElement)) {
+                console.log('inner html matches row num')
+                document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
+            }
+        }
+
+        for (let i = 0; i < cellElements.length; i++) {
+            if (cellElements[i].innerHTML == num && !cellElements[i].classList.contains(this.props.currentElement)) {
+                console.log('inner html matches cell num')
+                document.querySelector(`.${this.props.currentElement}`).classList.add('incorrect');
+            }
+        }
+
     }
     
     componentDidMount() {
