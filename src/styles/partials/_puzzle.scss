@@ -29,9 +29,7 @@
 }
 
 .element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-left: 1.5rem;
     border: 0.15rem solid $dark-text;
     width: 33.33%;
     height: 33.33%;
@@ -42,11 +40,11 @@
     font-weight: 700;
 }
 
-.focus {
+input:focus {
     border: 0.3rem solid $light-primary;
 }
 
-.incorrect {
+.incorrect, .incorrect:focus {
     color: $bright-primary;
 }
 
@@ -80,6 +78,10 @@
         border: 0.1rem solid $dark-text;
     }
 
+    .element {
+        padding-left: 1.2rem;
+    }
+
 }
 
 @media(max-width: 380px) {
@@ -90,6 +92,9 @@
 
     .cell {
         height: calc(30rem/3);
+    }
+    .element {
+        padding-left: 1rem;
     }
 
 }

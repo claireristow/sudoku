@@ -21,14 +21,21 @@ class PuzzleDifficulty extends Component {
         // use sudoku librayr to generate and format a new puzzle
         const puzzle = sudoku.generate(difficulty).split("");
         let elementNum = 1;
+
         puzzle.forEach((num) => {
-            if (num === ".") {
-                num = " ";
-                document.querySelector(`.element-${elementNum}`).classList.remove('original-num');
-            } else {
-                document.querySelector(`.element-${elementNum}`).classList.add('original-num');
+            let currentElement = document.querySelector(`.element-${elementNum}`);
+
+            // remove all readonly attributes
+            if (currentElement.hasAttribute('readonly')) {
+                currentElement.removeAttribute('readonly');
             }
-            document.querySelector(`.element-${elementNum}`).innerHTML = `${num}`;
+            // if there is a number or not
+            if (num === ".") {
+                num = "";
+            } else {
+                currentElement.setAttribute('readonly', '');
+            }
+            currentElement.value = `${num}`;
             elementNum += 1;
         })
         this.elementsFilled();
@@ -38,7 +45,7 @@ class PuzzleDifficulty extends Component {
         const htmlElements = document.getElementsByClassName('element');
         let count = 0;
         for (let i = 0; i < htmlElements.length; i++) {
-            let content = htmlElements[i].innerHTML;
+            let content = htmlElements[i].value;
             if (content !== " ") {
                 count += 1;
             }
