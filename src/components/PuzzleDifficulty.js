@@ -14,11 +14,17 @@ class PuzzleDifficulty extends Component {
     // when a difficulty is selected, arrange the puzzle data into the sudoku board
     newPuzzle = (difficulty) => {
 
-        // remove and add current classes for styling 
-        document.querySelector('.border-button.current').classList.remove('current');
+        // current class remove and add for new difficulty level
+        document.querySelector('.current').classList.remove('current');
         document.getElementById(difficulty).classList.add('current');
 
-        // use sudoku librayr to generate and format a new puzzle
+        // remove incorrect classes for new board
+        const incorrectElements = document.getElementsByClassName('element');
+        for (let i = 0; i < incorrectElements.length; i++) {
+            incorrectElements[i].classList.remove('incorrect');
+        }
+
+        // use sudoku library to generate and format a new puzzle
         const puzzle = sudoku.generate(difficulty).split("");
         let elementNum = 1;
 

@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   newInput = (num) => {
-    console.log('newinput running')
     this.checkIncorrectClass();
     this.checkNum(num);
     this.updateElementsFilled(1);
@@ -87,9 +86,7 @@ class App extends Component {
 
     // check fit in column
     for (let i = 0; i < colElements.length; i++) {
-      console.log(`number = ${num}`)
       if (colElements[i].value === num && !colElements[i].classList.contains(this.state.currentElement)) {
-        console.log('going into if statement')
         document.querySelector(`.${this.state.currentElement}`).classList.add('incorrect');
       }
     }

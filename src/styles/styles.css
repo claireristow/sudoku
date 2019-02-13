@@ -219,48 +219,56 @@ h3 {
 
 .puzzle {
   width: 50rem;
-  border: 0.4rem solid #181818; }
+  border: 0.25rem solid #181818; }
+
+.cell:nth-child(odd) {
+  background: #bfd3fd; }
+
+.cell:nth-child(even) {
+  background: #dae6ff; }
 
 .cell {
-  border: 0.2rem solid #181818;
+  border: 0.1rem solid #181818;
   width: 33.33%;
   height: calc(50rem/3); }
 
 .element {
-  padding-left: 1.5rem;
-  border: 0.15rem solid #181818;
+  padding-left: 1.8rem;
+  border: 0.1rem solid #181818;
   width: 33.33%;
   height: 33.33%;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  background: transparent; }
 
 .original-num {
   font-weight: 700; }
 
 input:focus {
-  border: 0.3rem solid #a8c4ff; }
+  border: 0.3rem solid #5087ff;
+  outline: 0; }
 
-.incorrect, .incorrect:focus {
+.incorrect {
   color: #ff3974; }
 
 @media (max-width: 575px) {
   .puzzle {
     width: 40rem;
-    border: 0.2rem solid #181818; }
+    border: 0.1rem solid #181818; }
   .cell {
     height: calc(40rem/3);
-    border: 0.15rem solid #181818; }
+    border: 0.05rem solid #181818; }
   .element {
     font-size: 2rem;
-    border: 0.05rem solid #181818; } }
+    border: 0.03rem solid #181818; } }
 
 @media (max-width: 435px) {
   .puzzle {
     width: 35rem; }
   .cell {
-    height: calc(35rem/3);
-    border: 0.1rem solid #181818; }
+    height: calc(35rem/3); }
   .element {
-    padding-left: 1.2rem; } }
+    padding-left: 1.2rem;
+    border: 0.01rem solid #181818; } }
 
 @media (max-width: 380px) {
   .puzzle {
@@ -268,7 +276,8 @@ input:focus {
   .cell {
     height: calc(30rem/3); }
   .element {
-    padding-left: 1rem; } }
+    padding-left: 1rem;
+    height: auto; } }
 
 .difficulty-buttons, .number-buttons {
   margin: 0.5rem 0; }
@@ -280,13 +289,13 @@ input:focus {
   align-items: center; }
 
 button {
-  margin: 1rem 0.5rem;
+  margin: 1rem 0.4rem;
   padding: 0.5rem 1rem;
   background: #a8c4ff;
-  border: 0.4rem solid #a8c4ff;
+  border: 0.3rem solid #a8c4ff;
   border-radius: 0.4rem;
-  font-size: 2rem;
-  font-weight: 700; }
+  box-shadow: 4px 4px 10px 0px rgba(184, 184, 184, 0.75);
+  font-size: 2rem; }
   button:focus {
     outline: 0; }
 

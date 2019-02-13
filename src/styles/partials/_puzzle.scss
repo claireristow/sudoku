@@ -1,6 +1,5 @@
 
 .puzzleElements {
-    // width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,21 +18,30 @@
 
 .puzzle {
     width: 50rem;
-    border: 0.4rem solid $dark-text;
+    border: 0.25rem solid $dark-text;
+}
+
+.cell:nth-child(odd) {
+    background: $dark-puzzle;
+}
+
+.cell:nth-child(even) {
+    background: $light-puzzle;
 }
 
 .cell {
-    border: 0.2rem solid $dark-text;
+    border: 0.1rem solid $dark-text;
     width: 33.33%;
     height: calc(50rem/3);
 }
 
 .element {
-    padding-left: 1.5rem;
-    border: 0.15rem solid $dark-text;
+    padding-left: 1.8rem;
+    border: 0.1rem solid $dark-text;
     width: 33.33%;
     height: 33.33%;
     font-size: 2.5rem;
+    background: transparent;
 }
 
 .original-num {
@@ -41,28 +49,29 @@
 }
 
 input:focus {
-    border: 0.3rem solid $light-primary;
+    border: 0.3rem solid $focus;
+    outline: 0;
 }
 
-.incorrect, .incorrect:focus {
-    color: $bright-primary;
+.incorrect{
+    color: $incorrect;
 }
 
 @media(max-width: 575px) {
 
     .puzzle {
         width: 40rem;
-        border: 0.2rem solid $dark-text;
+        border: 0.1rem solid $dark-text;
     }
 
     .cell {
         height: calc(40rem/3);
-        border: 0.15rem solid $dark-text;
+        border: 0.05rem solid $dark-text;
     }
     
     .element {
         font-size: 2rem;
-        border: 0.05rem solid $dark-text;
+        border: 0.03rem solid $dark-text;
     }
 
 }
@@ -71,15 +80,16 @@ input:focus {
 
     .puzzle {
         width: 35rem;
+
     }
 
     .cell {
         height: calc(35rem/3);
-        border: 0.1rem solid $dark-text;
     }
 
     .element {
         padding-left: 1.2rem;
+        border: 0.01rem solid $dark-text;
     }
 
 }
@@ -95,6 +105,7 @@ input:focus {
     }
     .element {
         padding-left: 1rem;
+        height: auto;
     }
 
 }
