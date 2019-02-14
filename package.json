@@ -2,6 +2,7 @@
   "name": "sudoku-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://claireristow.github.io/sudoku",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "node-sass-chokidar": "^1.3.4",
@@ -13,6 +14,8 @@
     "sudoku-umd": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
